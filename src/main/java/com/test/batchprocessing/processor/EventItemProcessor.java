@@ -40,7 +40,8 @@ public class EventItemProcessor implements ItemProcessor<eventModel, eventModel>
 			eventModel em=e.get();
 			log.info("PROCESSOR: event:" + em.getId() + ": event already in db: " + em);
 			if (em.getState().equals("FINISHED")) {
-				log.info("PROCESSOR: event:" + em.getId() + ": ignoring already FINISHED event " + e);
+				log.info("PROCESSOR: event:" + em.getId() + ": ignoring already FINISHED event");
+				log.debug("Event: " + e);
 			} else {
 				transformedEvent = new eventModel(id, state, host, type, timestamp);
 				
@@ -49,12 +50,14 @@ public class EventItemProcessor implements ItemProcessor<eventModel, eventModel>
 				if (duration > 4) {
 					transformedEvent.setAlert(true);
 				}
-				log.info("PROCESSOR: event:" + em.getId() + ": updating event to FINISHED state duration: " + duration + " " + transformedEvent);
+				log.info("PROCESSOR: event:" + em.getId() + ": updating event to FINISHED state duration: " + duration);
+				log.debug("Event: " + transformedEvent);
 			}
 			
 		} else {
 			transformedEvent = new eventModel(id, state, host, type, timestamp);
-			log.info("PROCESSOR: event:" + transformedEvent.getId() + ": new event " + transformedEvent);
+			log.info("PROCESSOR: event:" + transformedEvent.getId() + ": new event");
+			log.debug("Event: " + transformedEvent);
 		}
 		
 
