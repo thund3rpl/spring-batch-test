@@ -1,0 +1,4 @@
+[
+	{"id": "id1", "state": "STARTED", "host": "host1", "type": "type1", "timestamp": 1},
+	{"id": "id1", "state": "FINISHED","host": "host1", "type": "type1", "timestamp": 10}
+]
